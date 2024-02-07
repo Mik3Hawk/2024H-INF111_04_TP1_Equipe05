@@ -5,7 +5,7 @@ import java.io.IOException;
 import modele.satelliteRelai.SatelliteRelai;
 
 public class ProgrammePrincipal {
-//test2 mike
+//test2 mike pas
 	/**
 	 * Programme principale, instancie les éléments de la simulation,
 	 * les lie entre eux, puis lance la séquence de test.
