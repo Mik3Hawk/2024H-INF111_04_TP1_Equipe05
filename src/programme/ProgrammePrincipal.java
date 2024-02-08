@@ -3,6 +3,7 @@ package programme;
 import java.io.IOException;
 
 import modele.satelliteRelai.SatelliteRelai;
+import utilitaires.Vect2D;
 
 public class ProgrammePrincipal {
 //fintest
@@ -15,7 +16,16 @@ public class ProgrammePrincipal {
 	
 		SatelliteRelai satellite = new SatelliteRelai();
 		satellite.start();
-		
+
+
+		//TEST Vect2D
+		testVect2D();
+	}
+
+	//TEST Vect2D
+	public static void testVect2D(){
+		Vect2D v = new Vect2D();
+		System.out.println(v);
 	}
 
 }

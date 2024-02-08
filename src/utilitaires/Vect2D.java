@@ -59,6 +59,7 @@ public class Vect2D {
     public void diviser(double div){
         if(div==0){
             System.out.println("ERREUR impossible de diviser "+this+"par 0!");
+            System.exit(1); //code d'erreur
         }
         else {
             this.x /=div;
@@ -85,6 +86,7 @@ public class Vect2D {
         if(!(obj instanceof Vect2D))
             return false;
         Vect2D vect = (Vect2D) obj;
-        return vect.getLongueur()==this.getLongueur() && vect.getAngle()==this.getAngle();
+        return vect.getX()==this.x && vect.getY()==this.y;
     }
+
 }
