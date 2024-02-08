@@ -1,9 +1,20 @@
 package utilitaires;
 
 /**
+ * Classe qui gère les files d'objets
  *
+ * services offerts:
+ * - estPleine
+ * - estVide
+ * - enfiler
+ * - defiler
+ *
+ * @author Noah Tremblay, ETS
+ * @version Fev, 2024
  */
 
+
+//ATTENTION!!!! CETTE CLASSE N'EST PAS BONNE, LA FILE DOIT ETRE SOUS FORME DE CHAINE ET NON DANS UN TABLEAU!!!!!
 public abstract class File {
     private Object[] donnees;
     private int premier,dernier;
@@ -18,19 +29,24 @@ public abstract class File {
         dernier=0;
     }
     /**
-     *cette méthode vérifie si la file est vide en deux étapes
+     *méthode vérifiant si une file est vide en deux conditions
      * @return retourne vrai si la file est vide
      */
     public boolean estVide(){
         return this.premier==this.dernier && this.donnees[this.dernier]==null;
     }
     /**
-     *cette méthode
-     * @return retourne vrai si la file est pleine
+     * Méthode vérifiant si une file est pleine en deux conditions
+     * @return vrai si la file est pleine
      */
     public boolean estPleine(){
         return this.premier==this.dernier && this.donnees[this.dernier]!=null;
     }
+
+    /**
+     * Méthode permet d'ajouter un objet a la fin de la file
+     * @param obj: l'objet qu'on veut enfiler
+     */
     public void enfiler(Object obj){
         if(this.estPleine()){
             System.out.println("ERREUR: impossible d'enfiler, la file est pleine");
@@ -41,6 +57,11 @@ public abstract class File {
             this.dernier =(this.dernier+1)%this.donnees.length;
         }
     }
+
+    /**
+     * Méthode permmetant d'objetnir l'objet au début de la file et d'actualiser cette derniere
+     * @return l'objet au début de la file
+     */
     public Object defiler(){
         if(this.estVide()){
             System.out.println("ERREUR: impossible de défiler, la file est vide!");
