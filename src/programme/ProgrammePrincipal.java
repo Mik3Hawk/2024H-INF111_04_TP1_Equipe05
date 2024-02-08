@@ -26,6 +26,7 @@ public class ProgrammePrincipal {
 	public static void testVect2D(){
 		Vect2D v = new Vect2D();
 		System.out.println(v);
+		//allo
 	}
 
 }
