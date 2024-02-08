@@ -47,10 +47,16 @@ public class SatelliteRelai extends Thread{
 		lock.lock();
 		
 		try {
+			//Tire un nombre aléatoire
+			int value = rand.nextInt();
+			//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
+			// le message est ajouté à la file de messages à destination du centre de contrôle.
+			if(value>PROBABILITE_PERTE_MESSAGE){
+				##########
+				#########
 
-			/*
-			 * (5.1) Insérer votre code ici 
-			 */
+			}
+
 			
 		}finally {
 			lock.unlock();
@@ -65,6 +71,15 @@ public class SatelliteRelai extends Thread{
 		lock.lock();
 		
 		try {
+			//Tire un nombre aléatoire
+			int value = rand.nextInt();
+			//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
+			// le message est ajouté à la file de messages à destination du Rover.
+			if(value>PROBABILITE_PERTE_MESSAGE){
+				##########
+				#########
+
+			}
 
 			/*
 			 * (5.2) Insérer votre code ici 
