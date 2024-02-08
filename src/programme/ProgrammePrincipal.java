@@ -17,7 +17,6 @@ public class ProgrammePrincipal {
 		SatelliteRelai satellite = new SatelliteRelai();
 		satellite.start();
 
-
 		//TEST Vect2D
 		testVect2D();
 	}
@@ -28,5 +27,6 @@ public class ProgrammePrincipal {
 		System.out.println(v);
 		//allo
 	}
+
 
 }
