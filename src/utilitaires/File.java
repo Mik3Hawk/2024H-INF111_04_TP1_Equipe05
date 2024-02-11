@@ -12,13 +12,11 @@ package utilitaires;
  * @author Noah Tremblay, ETS
  * @version Fev, 2024
  */
-
+public class Noeud{
+    Object donnee;
+    File.Noeud suivant;
+}
 public abstract class File {
-    public class Noeud{
-        Object donnee;
-        Noeud suivant;
-    }
-
     private Noeud premier,dernier;
     pivate taille;
 
