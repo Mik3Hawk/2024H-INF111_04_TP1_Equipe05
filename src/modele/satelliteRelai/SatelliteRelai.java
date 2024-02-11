@@ -52,8 +52,7 @@ public class SatelliteRelai extends Thread{
 			//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
 			// le message est ajouté à la file de messages à destination du centre de contrôle.
 			if(value>PROBABILITE_PERTE_MESSAGE){
-				##########
-				#########
+
 
 			}
 
@@ -76,8 +75,6 @@ public class SatelliteRelai extends Thread{
 			//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
 			// le message est ajouté à la file de messages à destination du Rover.
 			if(value>PROBABILITE_PERTE_MESSAGE){
-				##########
-				#########
 
 			}
 
