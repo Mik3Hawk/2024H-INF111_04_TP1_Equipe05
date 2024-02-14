@@ -14,16 +14,35 @@ public class ProgrammePrincipal {
 	 * @param args, pas utilisé
 	 */
 	public static void main(String[] args){
-//
-//		SatelliteRelai satellite = new SatelliteRelai();
-//		satellite.start();
-//
+
+		SatelliteRelai satellite = new SatelliteRelai();
+		satellite.start();
+
+		//TEST SatelliteRelais
+		satellite.envoyerMessageVersRover("allo test 1");
+		satellite.envoyerMessageVersRover("allo test 2");
+		satellite.envoyerMessageVersRover("allo test 3");
+
+		//boucle qui effectue 1 itération a chaque 5 secondes 10 fois
+		for (int i = 0; i < 10; i++) {
+
+			System.out.println("Itération " + (i + 1));
+
+			System.out.println(satellite.getFileMessageVersRover());
+			// Attente de 5 secondes
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
 
 		//TEST Vect2D
 		//testVect2D();
 
 		//TEST File
-		testFile();
+		//testFile();
 	}
 
 	//TEST Vect2D
@@ -142,5 +161,6 @@ public class ProgrammePrincipal {
 		else
 			System.out.println("les vecteur ne sont pas égaux, ERREUR");
 	}
+
 
 }

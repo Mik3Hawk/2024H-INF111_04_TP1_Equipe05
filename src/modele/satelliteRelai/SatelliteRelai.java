@@ -27,36 +27,36 @@ import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
 
 import modele.communication.Message;
+import utilitaires.File;
 
 public class SatelliteRelai extends Thread{
 	
 	static final int TEMPS_CYCLE_MS = 500;
 	static final double PROBABILITE_PERTE_MESSAGE = 0.15;
-	
 	ReentrantLock lock = new ReentrantLock();
-	
 	private Random rand = new Random();
-	
+
+	private File fileMessageVersCentrOp = new File();
+	private File fileMessageVersRover = new File();
+
+	public File getFileMessageVersCentrOp(){return this.fileMessageVersCentrOp;}
+	public File getFileMessageVersRover(){return this.fileMessageVersRover;}
 	
 	/**
 	 * Méthode permettant d'envoyer un message vers le centre d'opération
 	 * @param msg, message à envoyer
 	 */
-	public void envoyerMessageVersCentrOp(Message msg) {
-		
+	public void envoyerMessageVersCentrOp(String msg) {
 		lock.lock();
 		
 		try {
 			//Tire un nombre aléatoire
-			int value = rand.nextInt();
+			double value = rand.nextDouble();
 			//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
 			// le message est ajouté à la file de messages à destination du centre de contrôle.
-			if(value>PROBABILITE_PERTE_MESSAGE){
+			if(value>PROBABILITE_PERTE_MESSAGE)
+				this.fileMessageVersCentrOp.enfiler(msg);
 
-
-			}
-
-			
 		}finally {
 			lock.unlock();
 		}
@@ -66,22 +66,17 @@ public class SatelliteRelai extends Thread{
 	 * Méthode permettant d'envoyer un message vers le rover
 	 * @param msg, message à envoyer
 	 */
-	public void envoyerMessageVersRover(Message msg) {
+	public void envoyerMessageVersRover(String msg) {
 		lock.lock();
 		
 		try {
 			//Tire un nombre aléatoire
-			int value = rand.nextInt();
+			double value = rand.nextDouble();
 			//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
 			// le message est ajouté à la file de messages à destination du Rover.
-			if(value>PROBABILITE_PERTE_MESSAGE){
+			if(value>PROBABILITE_PERTE_MESSAGE)
+				this.fileMessageVersRover.enfiler(msg);
 
-			}
-
-			/*
-			 * (5.2) Insérer votre code ici 
-			 */
-			
 		}finally {
 			lock.unlock();
 		}
@@ -91,10 +86,9 @@ public class SatelliteRelai extends Thread{
 	public void run() {
 		
 		while(true) {
-			
-			/*
-			 * (5.3) Insérer votre code ici 
-			 */
+			// a chaque cycle
+			this.fileMessageVersRover.defiler();
+			this.fileMessageVersCentrOp.defiler();
 
 			// attend le prochain cycle
 			try {

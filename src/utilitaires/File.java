@@ -4,10 +4,11 @@ package utilitaires;
  * Classe qui gère les files d'objets
  *
  * services offerts:
- * - estPleine
+ * - getTaille
  * - estVide
  * - enfiler
  * - defiler
+ * - toString
  *
  * @author Noah Tremblay, ETS
  * @version Fev, 2024
@@ -51,16 +52,20 @@ public class File {
     }
 
     /**
-     * accesseur taille
+     * accesseur taille (principaelement pour des tests)
      * @return la taille de la file (int)
      */
     public int getTaille(){
         return this.taille;
     }
+
+    /**
+     * Méthode pour savoir si une file est vide
+     * @return True si la file est vide, sinon False
+     */
     public boolean estVide(){
         return this.taille==0;
     }
-
     /**
      * fonction qui permet d'enfiler un élément
      * @param element: éléement qu'on souhaite enfilet
@@ -76,10 +81,9 @@ public class File {
         }
         this.taille++;
     }
-
     /**
-     * fonction qui permet de défiler un element de la file
-     * @return l'objet défilé
+     * fonction qui permet de défiler noeud de la file
+     * @return l'objet du noeud défilé (donnee)
      */
     public Object defiler(){
         if (this.estVide()){
@@ -95,8 +99,11 @@ public class File {
         return temp.donnee;
     }
 
+    /**
+     * Méthode override to string (principaelement pour des tests)
+     * @return les données en ordre de chaque noeud séparés par une virgule
+     */
     @Override
-
     public String toString(){
         if (this.estVide()) {
             return "La file est vide.";
