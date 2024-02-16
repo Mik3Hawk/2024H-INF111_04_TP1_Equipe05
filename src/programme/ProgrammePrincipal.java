@@ -31,7 +31,7 @@ public class ProgrammePrincipal {
 			System.out.println("Itération " + (i + 1));
 
 			System.out.println(satellite.getFileMessageVersRover());
-			// Attente de 5 secondes
+			// Attente de 5 secondes trouvé sur internet
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
