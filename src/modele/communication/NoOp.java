@@ -2,7 +2,8 @@ package modele.communication;
 
 public class NoOp extends Message{
 
-    public NoOp(){
+    public NoOp(int compte){
+        super(compte);
 
     }
 }
