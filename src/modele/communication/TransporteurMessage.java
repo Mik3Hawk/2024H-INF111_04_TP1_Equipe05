@@ -111,7 +111,7 @@ public abstract class TransporteurMessage extends Thread {
 	 * méthode abstraite utilisé pour effectuer le traitement d'un message
 	 * @param msg, le message à traiter
 	 */
-	abstract protected void gestionnaireMessage(Message msg);x/
+	abstract protected void gestionnaireMessage(Message msg);
 
 	
 
