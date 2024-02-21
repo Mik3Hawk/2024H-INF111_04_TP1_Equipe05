@@ -60,10 +60,10 @@ public abstract class TransporteurMessage extends Thread {
 		lock.lock();
 		
 		try {
-			
-			/*
-			 * (6.3.3) Insérer votre code ici 
-			 */
+			//6.3.3
+			if (msg instanceof Nack){
+			//quelle file ? parler au prof
+			}
 			
 		}finally {
 			lock.unlock();
@@ -111,7 +111,7 @@ public abstract class TransporteurMessage extends Thread {
 	 * méthode abstraite utilisé pour effectuer le traitement d'un message
 	 * @param msg, le message à traiter
 	 */
-	abstract protected void gestionnaireMessage(Message msg);
+	abstract protected void gestionnaireMessage(Message msg);x/
 
 	
 
