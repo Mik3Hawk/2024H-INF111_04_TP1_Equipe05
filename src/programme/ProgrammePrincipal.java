@@ -2,6 +2,7 @@ package programme;
 
 import java.io.IOException;
 
+import modele.communication.Message;
 import modele.satelliteRelai.SatelliteRelai;
 import utilitaires.Vect2D;
 import utilitaires.File;
@@ -105,7 +106,7 @@ public class ProgrammePrincipal {
 
     public static void testFile() {
         //test général
-        File file1 = new File();
+        File<String> file1 = new File<>();
         String a = "a", b = "b", c = "c", d = "d";
         file1.enfiler(a);
         file1.enfiler(b);
@@ -141,28 +142,29 @@ public class ProgrammePrincipal {
         System.out.println(file1.getTaille() + " <- si: 3, OK");
         System.out.println(file1 + " <- si: b,c,d, OK");
 
-        //test avec plusieurs objet
-        int un = 1, deux = 2;
-        boolean nul = false;
-        Vect2D vect = new Vect2D(4, 6);
+        while (!file1.estVide()) {
+            file1.defiler();
+        }
+        System.out.println(file1.getTaille() + " <- si: 0, OK");
 
-        file1.enfiler(un);
-        file1.enfiler(deux);
-        file1.enfiler(nul);
-        file1.enfiler(vect);
-        System.out.println(file1.getTaille() + " <- si: 7, OK");
-        System.out.println(file1 + " <- si: b,c,d,1,2,false,(4.0,6.0), OK");
-        file1.defiler();
-        file1.defiler();
-        file1.defiler();
-        file1.defiler();
-        file1.defiler();
-        file1.defiler();
-        System.out.println(file1 + " <- si: (4.0,6.0), OK");
-        if (file1.defiler().equals(new Vect2D(4, 6)))
-            System.out.println("les vecteur sont égaux, OK");
-        else
-            System.out.println("les vecteur ne sont pas égaux, ERREUR");
+        file1.enfilerPrioritaire("a");
+        System.out.println(file1);
+        file1.enfilerPrioritaire("b");
+        file1.enfilerPrioritaire("c");
+        System.out.println(file1);
+        file1.enfilerPrioritaire("d");
+        file1.enfilerPrioritaire("e");
+        file1.enfilerPrioritaire("f");
+        System.out.println(file1);
+        System.out.println(file1.defiler() + " <- si: a, OK");
+
+
+        //test file
+
+
+        File<Message> fileMsg = new File<>();
+
+
     }
 
 

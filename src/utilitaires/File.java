@@ -1,23 +1,28 @@
 package utilitaires;
 
+import modele.communication.Message;
 /**
  * Classe qui gère les files d'objets
- * <p>
+ *
  * services offerts:
  * - getTaille
  * - estVide
  * - enfiler
  * - defiler
+ * - peek
  * - toString
+ *
  *
  * @author Noah Tremblay, ETS
  * @version Fev, 2024
  */
 
+import modele.communication.Message;
+
 /**
  * Classe file
  */
-public class File {
+public class File<T extends Comparable<T>> {
     private Noeud premier, dernier;
     private int taille;
 
@@ -25,10 +30,10 @@ public class File {
      * classe noeud pour représenter les objets ainsi que leur suivant.
      */
     private class Noeud {
-        Object donnee;
+        T donnee;
         Noeud suivant;
 
-        public Noeud(Object data, Noeud next) {
+        public Noeud(T data, Noeud next) {
             this.donnee = data;
             this.suivant = next;
         }
@@ -39,7 +44,7 @@ public class File {
      *
      * @param premier: premier objet le la file
      */
-    public File(Object premier) {
+    public File(T premier) {
         Noeud n = new Noeud(premier, null);
         this.premier = n;
         this.dernier = n;
@@ -77,7 +82,7 @@ public class File {
      *
      * @param element: éléement qu'on souhaite enfilet
      */
-    public void enfiler(Object element) {
+    public void enfiler(T element) {
         Noeud n = new Noeud(element, null);
         if (this.estVide()) {
             this.premier = this.dernier = n;
@@ -93,7 +98,7 @@ public class File {
      *
      * @return l'objet du noeud défilé (donnee)
      */
-    public Object defiler() {
+    public T defiler() {
         if (this.estVide()) {
             System.out.println("ERREUR la file est vide, impossible de retirer un element!");
             System.exit(1); //code d'erreur
@@ -101,10 +106,48 @@ public class File {
         if (this.taille == 1) {
             System.out.println("DEBUG: attention la file est maitenant vide!");
         }
-        Object temp = this.premier.donnee;
+        T temp = this.premier.donnee;
         this.premier = this.premier.suivant;
         this.taille--;
         return temp;
+    }
+
+    public void enfilerPrioritaire(T element) {
+
+        if (this.estVide()) {
+            Noeud n = new Noeud(element, null);
+            this.premier = this.dernier = n;
+        } else {
+
+            Noeud courant = this.premier;
+            //si l'élément est prioritaire sur tout les éléments de la file
+            if (element.compareTo(courant.donnee) > 0) {
+                System.out.println("j'enfile au debut");
+                Noeud n = new Noeud(element, this.premier);
+                this.premier = n;
+
+            } else {
+                //trouver ou inserer l'element
+                while (courant.suivant != null && element.compareTo(courant.suivant.donnee) < 0) {
+                    courant = courant.suivant;
+                }
+
+                //si on doit insérer a la fin de la file
+                if (courant.suivant == null) {
+                    System.out.println("j'enfile a la fin");
+                    this.enfiler(element);
+                }
+
+                //insere dans la file
+                else {
+                    Noeud n = new Noeud(element, courant.suivant);
+                    courant.suivant = n;
+                }
+            }
+
+
+        }
+        this.taille++;
     }
 
     /**
