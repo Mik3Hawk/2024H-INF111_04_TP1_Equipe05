@@ -144,8 +144,6 @@ public class File<T extends Comparable<T>> {
                     courant.suivant = n;
                 }
             }
-
-
         }
         this.taille++;
     }
