@@ -45,7 +45,8 @@ public abstract class TransporteurMessage extends Thread {
     // lock qui protège la liste de messages reçu
     private ReentrantLock lock = new ReentrantLock();
 
-    private File msgRecus, msgEnvoyes;
+    private File<Message> msgRecus = new File<>();
+    private File<Message> msgEnvoyes = new File<>();
 
     /**
      * Constructeur, initialise le compteur de messages unique
@@ -58,15 +59,14 @@ public abstract class TransporteurMessage extends Thread {
      * Méthode gérant les messages reçu du satellite. La gestion se limite
      * à l'implémentation du Nack, les messages spécialisé sont envoyés
      * aux classes dérivés
+     *
      * @param msg, message reçu
      */
     public void receptionMessageDeSatellite(Message msg) {
         lock.lock();
         try {
-            //6.3.3
-            if (msg instanceof Nack) {
-                //quelle file ? parler au prof
-            }
+            //6.3.3 utilisation de la méthode enfilerPrioritaire()
+            msgRecus.enfilerPrioritaire(msg);
 
         } finally {
             lock.unlock();
@@ -106,12 +106,14 @@ public abstract class TransporteurMessage extends Thread {
 
     /**
      * méthode abstraite utilisé pour envoyer un message
+     *
      * @param msg, le message à envoyer
      */
     abstract protected void envoyerMessage(Message msg);
 
     /**
      * méthode abstraite utilisé pour effectuer le traitement d'un message
+     *
      * @param msg, le message à traiter
      */
     abstract protected void gestionnaireMessage(Message msg);
