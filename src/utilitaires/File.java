@@ -21,7 +21,17 @@ import modele.communication.Message;
 
 /**
  * Classe file
+ * <p>
+ * Services offerts:
+ * - getTaille
+ * - estVide
+ * - enfiler
+ * - defiler
+ * - peek
+ * - enfilerPrioritaire
+ * - toString
  */
+
 public class File<T extends Comparable<T>> {
     private Noeud premier, dernier;
     private int taille;
@@ -112,6 +122,11 @@ public class File<T extends Comparable<T>> {
         return temp;
     }
 
+    /**
+     * permet de voir l'élément au début de la file sans autant le défiler
+     *
+     * @return l'élément au début de la file
+     */
     public T peek() {
         if (this.estVide()) {
             System.out.println("DEBUG: attention vous essayer de peek une file vide!");
@@ -121,6 +136,11 @@ public class File<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * Cette méthode permet d'enfiler un élément dans la file de facon prioritaire en utilisant equals
+     *
+     * @param element, élément a enfiler prioritairement
+     */
     public void enfilerPrioritaire(T element) {
 
         if (this.estVide()) {
@@ -158,7 +178,7 @@ public class File<T extends Comparable<T>> {
     }
 
     /**
-     * Méthode override to string (principaelement pour des tests)
+     * Méthode override to string (principalement a des fins de tests)
      *
      * @return les données en ordre de chaque noeud séparés par une virgule
      */
