@@ -8,7 +8,6 @@ import utilitaires.Vect2D;
 import utilitaires.File;
 
 public class ProgrammePrincipal {
-//fintest
 
     /**
      * Programme principale, instancie les éléments de la simulation,
@@ -48,43 +47,57 @@ public class ProgrammePrincipal {
         testFile();
     }
 
-    //TEST Vect2D
+//=================================================================================================//
+
+    /**
+     * Fonction de test pour la classe Vect2D
+     */
+
     public static void testVect2D() {
         Vect2D v = new Vect2D();
         System.out.println(v);
 
+        //============================================//
         //avec parametre
         Vect2D testPar = new Vect2D(1.0, 3.0);
         System.out.println(testPar);
 
+        //============================================//
         //copie de vect2d
         Vect2D copie = new Vect2D(testPar);
         System.out.println(copie);
 
+        //============================================//
         //get x
         double x = copie.getX();
         System.out.println(x);
 
+        //============================================//
         //get y
         double y = copie.getY();
         System.out.println(y);
 
+        //============================================//
         //longueur du vecteur
         double longueur = copie.getLongueur();
         System.out.println("la longeur du vecteur est " + longueur);
 
+        //============================================//
         //angle
         double angle = copie.getAngle();
         System.out.println("L'angle (rad): " + angle);
 
+        //============================================//
         //Calculdiff
         Vect2D vecteur1 = new Vect2D(3.0, 4.0);
         Vect2D vecteur2 = new Vect2D(1.0, 2.0);
 
+        //============================================//
         // Calcul de la différence entre les deux vecteurs
         Vect2D difference = vecteur2.calculerDiff(vecteur1);
         System.out.println("Différence entre les vecteurs :" + difference);
 
+        //============================================//
         //diviser
         Vect2D c = new Vect2D(2.0, 4.0);
         c.diviser(2);
@@ -104,7 +117,15 @@ public class ProgrammePrincipal {
         System.out.println(vect1.equals(vect2));
     }
 
+//=================================================================================================//
+
+    /**
+     * Fonction de Test pour la classe File
+     */
+
     public static void testFile() {
+
+        //============================================//
         //test général
         File<String> file1 = new File<>();
         String a = "a", b = "b", c = "c", d = "d";
@@ -119,14 +140,18 @@ public class ProgrammePrincipal {
         else
             System.out.println("b != b, ERREUR");
 
+        //============================================//
         //test estVide
         if (file1.estVide())
             System.out.println("file est vide, OK");
         else
             System.out.println("File n'est pas vide, ERREUR");
+
+        //============================================//
         //test defiler
         //file1.defiler();
 
+        //============================================//
         //test taille
         System.out.println(file1.getTaille() + " <- si: 0, OK");
         file1.enfiler(a);
@@ -135,6 +160,7 @@ public class ProgrammePrincipal {
         file1.enfiler(d);
         System.out.println(file1.getTaille() + " <- si: 4, OK");
 
+        //============================================//
         //test to string
         System.out.println(file1 + " <- si: a,b,c,d, OK");
         System.out.println(file1.getTaille() + " <- si: 4, OK");
@@ -147,6 +173,7 @@ public class ProgrammePrincipal {
         }
         System.out.println(file1.getTaille() + " <- si: 0, OK");
 
+        //============================================//
         //test enfilerPrioritaire
         file1.enfilerPrioritaire("a");
         System.out.println(file1);
@@ -165,9 +192,16 @@ public class ProgrammePrincipal {
         file1.enfilerPrioritaire("b");
         System.out.println(file1 + " <- si: f,e,e,d,d,c,b,b,a OK");
 
+        //============================================//
+        //test peek
+        System.out.println(file1.peek() + " <- si: f OK");
+        while (!file1.estVide()) {
+            file1.defiler();
+        }
+        System.out.println(file1.peek() + " <- si: null OK");
+
+        //============================================//
         //test file avec message
-
-
         File<Message> fileMsg = new File<>();
 
 

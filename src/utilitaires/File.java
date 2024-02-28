@@ -112,6 +112,15 @@ public class File<T extends Comparable<T>> {
         return temp;
     }
 
+    public T peek() {
+        if (this.estVide()) {
+            System.out.println("DEBUG: attention vous essayer de peek une file vide!");
+            return null;
+        } else {
+            return this.premier.donnee;
+        }
+    }
+
     public void enfilerPrioritaire(T element) {
 
         if (this.estVide()) {
