@@ -147,6 +147,7 @@ public class ProgrammePrincipal {
         }
         System.out.println(file1.getTaille() + " <- si: 0, OK");
 
+        //test enfilerPrioritaire
         file1.enfilerPrioritaire("a");
         System.out.println(file1);
         file1.enfilerPrioritaire("b");
@@ -155,11 +156,16 @@ public class ProgrammePrincipal {
         file1.enfilerPrioritaire("d");
         file1.enfilerPrioritaire("e");
         file1.enfilerPrioritaire("f");
-        System.out.println(file1);
-        System.out.println(file1.defiler() + " <- si: a, OK");
+        System.out.println(file1 + " <- si: f,e,d,c,b,a OK");
+        System.out.println(file1.defiler() + " <- si: f OK");
+        file1.enfilerPrioritaire("e");
+        file1.enfilerPrioritaire("f");
+        System.out.println(file1 + " <- si: f,e,e,d,c,b,a OK");
+        file1.enfilerPrioritaire("d");
+        file1.enfilerPrioritaire("b");
+        System.out.println(file1 + " <- si: f,e,e,d,d,c,b,b,a OK");
 
-
-        //test file
+        //test file avec message
 
 
         File<Message> fileMsg = new File<>();
