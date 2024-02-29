@@ -66,8 +66,6 @@ public abstract class Message implements Comparable<Message> {
      */
 
     public int compareTo(Message msg2) {
-        if (this.equals(msg2))
-            return 0;
         if (this instanceof Nack && !(msg2 instanceof Nack)) {
             return 1;
         }
@@ -75,7 +73,7 @@ public abstract class Message implements Comparable<Message> {
             return -1;
         }
         //dans ce cas les deux messages sont du meme "type"
-        return Integer.compare(this.compte, msg2.compte);
+        return this.compte - msg2.compte;
     }
 
 }
