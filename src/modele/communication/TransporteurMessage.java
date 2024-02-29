@@ -86,10 +86,17 @@ public abstract class TransporteurMessage extends Thread {
             lock.lock();
 
             try {
+                //3.4.4
+                while(!msgRecus.estVide()&&/*aucun nack n'a été envoyé*/){
+                    Message msg = msgRecus.defiler();
 
-                /*
-                 * (6.3.4) Insérer votre code ici
-                 */
+                    if(msg instanceof Nack){
+                        int compteMsg =msg.getCompte();
+                        Message courant = 
+
+                    }
+                }
+
 
             } finally {
                 lock.unlock();
