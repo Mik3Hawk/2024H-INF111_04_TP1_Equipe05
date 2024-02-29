@@ -34,6 +34,7 @@ package modele.communication;
  */
 
 import utilitaires.File;
+import modele.communication.Nack;
 
 import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
@@ -45,8 +46,8 @@ public abstract class TransporteurMessage extends Thread {
     // lock qui protège la liste de messages reçu
     private ReentrantLock lock = new ReentrantLock();
 
-    private File<Message> msgRecus = new File<>();
-    private File<Message> msgEnvoyes = new File<>();
+    protected File<Message> msgRecus = new File<>();
+    protected File<Message> msgEnvoyes = new File<>();
 
     /**
      * Constructeur, initialise le compteur de messages unique

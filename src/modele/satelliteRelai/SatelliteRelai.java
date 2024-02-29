@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
 
+import modele.centreControle.CentreControle;
+import modele.rover.Rover;
 import utilitaires.File;
 import modele.communication.Message;
 
@@ -38,6 +40,8 @@ public class SatelliteRelai extends Thread {
 
     private File fileMessageVersCentrOp = new File();
     private File fileMessageVersRover = new File();
+    private CentreControle centreControle;
+    private Rover rover;
 
     public File getFileMessageVersCentrOp() {
         return this.fileMessageVersCentrOp;
@@ -49,6 +53,7 @@ public class SatelliteRelai extends Thread {
 
     /**
      * Méthode permettant d'envoyer un message vers le centre d'opération
+     *
      * @param msg, message à envoyer
      */
     public void envoyerMessageVersCentrOp(Message msg) {
@@ -69,6 +74,7 @@ public class SatelliteRelai extends Thread {
 
     /**
      * Méthode permettant d'envoyer un message vers le rover
+     *
      * @param msg, message à envoyer
      */
     public void envoyerMessageVersRover(Message msg) {
@@ -104,5 +110,11 @@ public class SatelliteRelai extends Thread {
         }
     }
 
+    public void lierCentrOp(CentreControle centreControle) {
+        this.centreControle = centreControle;
+    }
 
+    public void lierRover(Rover rover) {
+        this.rover = rover;
+    }
 }
