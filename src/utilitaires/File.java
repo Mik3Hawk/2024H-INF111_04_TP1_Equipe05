@@ -137,7 +137,7 @@ public class File<T extends Comparable<T>> {
             Noeud courant = this.premier;
             //si l'élément est prioritaire sur tout les éléments de la file
             if (element.compareTo(courant.donnee) > 0) {
-                System.out.println("j'enfile au debut");
+                System.out.println("DEBUG : enfilerPrioritaire. J'enfile " + element + " au debut!");
                 Noeud n = new Noeud(element, this.premier);
                 this.premier = n;
 
@@ -149,8 +149,10 @@ public class File<T extends Comparable<T>> {
 
                 //si on doit insérer a la fin de la file
                 if (courant.suivant == null) {
-                    System.out.println("j'enfile a la fin");
-                    this.enfiler(element);
+                    System.out.println("DEBUG : enfilerPrioritaire. J'enfile " + element + " a la fin!");
+                    Noeud n = new Noeud(element, null);
+                    this.dernier.suivant = n;
+                    this.dernier = n;
                 }
 
                 //insere dans la file

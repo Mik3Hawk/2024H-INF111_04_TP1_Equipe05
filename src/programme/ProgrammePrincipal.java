@@ -175,10 +175,13 @@ public class ProgrammePrincipal {
 
         //============================================//
         //test enfilerPrioritaire
-        file1.enfilerPrioritaire("a");
+        file1.enfilerPrioritaire("b");
+        System.out.println(file1.getTaille() + " <- si: 1, OK");
         System.out.println(file1);
         file1.enfilerPrioritaire("b");
+        System.out.println(file1.getTaille() + " <- si: 2, OK");
         file1.enfilerPrioritaire("c");
+        System.out.println(file1.getTaille() + " <- si: 3, OK");
         System.out.println(file1);
         file1.enfilerPrioritaire("d");
         file1.enfilerPrioritaire("e");
@@ -191,6 +194,8 @@ public class ProgrammePrincipal {
         file1.enfilerPrioritaire("d");
         file1.enfilerPrioritaire("b");
         System.out.println(file1 + " <- si: f,e,e,d,d,c,b,b,a OK");
+        file1.enfilerPrioritaire("a");
+
 
         //============================================//
         //test peek
