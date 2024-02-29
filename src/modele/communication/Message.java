@@ -64,7 +64,6 @@ public abstract class Message implements Comparable<Message> {
      * @param msg2 message qu'on veut comparere
      * @return -1 si msg1<msg2, 0 si msg1=msg2, +1 si msg1>msg2
      */
-
     public int compareTo(Message msg2) {
         if (this instanceof Nack && !(msg2 instanceof Nack)) {
             return 1;
@@ -73,7 +72,20 @@ public abstract class Message implements Comparable<Message> {
             return -1;
         }
         //dans ce cas les deux messages sont du meme "type"
-        return this.compte - msg2.compte;
+        return msg2.compte - this.compte;
     }
 
+    @Override
+
+    public String toString() {
+        String s = Integer.toString(this.compte);
+        if (this instanceof Nack) {
+            return "nack" + s;
+        }
+        if (this instanceof NoOp) {
+            return "noop" + s;
+        }
+
+        return "msg" + s;
+    }
 }

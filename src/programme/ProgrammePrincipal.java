@@ -3,6 +3,8 @@ package programme;
 import java.io.IOException;
 
 import modele.communication.Message;
+import modele.communication.Nack;
+import modele.communication.NoOp;
 import modele.satelliteRelai.SatelliteRelai;
 import utilitaires.Vect2D;
 import utilitaires.File;
@@ -208,6 +210,25 @@ public class ProgrammePrincipal {
         //============================================//
         //test file avec message
         File<Message> fileMsg = new File<>();
+        Message nack1 = new Nack(1);
+        Message nack2 = new Nack(2);
+        Message nack3 = new Nack(3);
+        Message nack4 = new Nack(4);
+        Message noop1 = new NoOp(1);
+        Message noop2 = new NoOp(2);
+        Message noop3 = new NoOp(3);
+        Message noop4 = new NoOp(4);
+
+        fileMsg.enfilerPrioritaire(nack1);
+        fileMsg.enfilerPrioritaire(noop2);
+        System.out.println(fileMsg + " <- si: nack1,noop2 OK");
+        fileMsg.enfilerPrioritaire(nack3);
+        fileMsg.enfilerPrioritaire(noop4);
+        fileMsg.enfilerPrioritaire(nack4);
+        fileMsg.enfilerPrioritaire(noop1);
+        fileMsg.enfilerPrioritaire(nack2);
+        fileMsg.enfilerPrioritaire(noop3);
+        System.out.println(fileMsg + " <- si: nack1, nack2, nack3, nack4, noop1, noop2, noop3, noop4 OK");
 
 
     }

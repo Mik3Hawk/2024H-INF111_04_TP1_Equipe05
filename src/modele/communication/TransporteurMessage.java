@@ -67,7 +67,7 @@ public abstract class TransporteurMessage extends Thread {
         lock.lock();
         try {
             //6.3.3 utilisation de la méthode enfilerPrioritaire()
-            msgRecus.enfilerPrioritaire(msg);
+            this.msgRecus.enfilerPrioritaire(msg);
 
         } finally {
             lock.unlock();
