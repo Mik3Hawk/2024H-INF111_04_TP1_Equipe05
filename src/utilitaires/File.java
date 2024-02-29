@@ -12,7 +12,6 @@ import modele.communication.Message;
  * - peek
  * - toString
  *
- *
  * @author Noah Tremblay, ETS
  * @version Fev, 2024
  */
@@ -35,19 +34,6 @@ import modele.communication.Message;
 public class File<T extends Comparable<T>> {
     private Noeud premier, dernier;
     private int taille;
-
-    /**
-     * classe noeud pour représenter les objets ainsi que leur suivant.
-     */
-    private class Noeud {
-        T donnee;
-        Noeud suivant;
-
-        public Noeud(T data, Noeud next) {
-            this.donnee = data;
-            this.suivant = next;
-        }
-    }
 
     /**
      * Constructeur avec un premier
@@ -184,19 +170,34 @@ public class File<T extends Comparable<T>> {
      */
     @Override
     public String toString() {
-        if (this.estVide()) {
+        if (estVide()) {
             return "La file est vide.";
         }
-        String retour = "La file: ";
-        Noeud courant = this.premier;
-        int i;
-        for (i = 0; i < this.taille; i++) {
-            retour += courant.donnee.toString();
-            if (i != this.taille - 1) {
-                retour += ",";
+
+        StringBuilder sb = new StringBuilder("La file: ");
+        Noeud courant = premier;
+
+        for (int i = 0; i < taille; i++) {
+            sb.append(courant.donnee);
+
+            if (i < taille - 1) {
+                sb.append(", ");
             }
             courant = courant.suivant;
         }
-        return retour;
+        return sb.toString();
+    }
+
+    /**
+     * classe noeud pour représenter les objets ainsi que leur suivant.
+     */
+    private class Noeud {
+        T donnee;
+        Noeud suivant;
+
+        public Noeud(T data, Noeud next) {
+            this.donnee = data;
+            this.suivant = next;
+        }
     }
 }
