@@ -1,9 +1,9 @@
 package utilitaires;
 
-import modele.communication.Message;
+
 /**
  * Classe qui gère les files d'objets
- *
+ * <p>
  * services offerts:
  * - getTaille
  * - estVide
