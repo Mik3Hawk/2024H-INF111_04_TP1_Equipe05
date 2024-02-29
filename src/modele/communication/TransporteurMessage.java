@@ -90,15 +90,15 @@ public abstract class TransporteurMessage extends Thread {
             lock.lock();
 
             try {
+
                 //3.4.4
                 while (!this.msgRecus.estVide() && !unNackEnvoye) {
 
                     if (msg instanceof Nack) {
-
                         //obtient le compte du message manquant
                         msgCompte = msg.getCompte();
-
                         //enlevant tous les messages estInstance de Nack.
+
                         while (this.msgEnvoyes.peek() instanceof Nack) {
                             this.msgEnvoyes.defiler();
                         }
@@ -106,11 +106,9 @@ public abstract class TransporteurMessage extends Thread {
                         courantCompte = this.msgEnvoyes.peek().getCompte();
 
                         //cherche ce message dans la file des messages envoyés
-                        while (courantCompte.compareTo(msgCompte) != 0) {
-
+                        while (courantCompte != (msgCompte)) {
                             //enlevant tous les messages au compte inférieur au passage
                             this.msgEnvoyes.defiler();
-
                             courantCompte = this.msgEnvoyes.peek().getCompte();
                         }
 
@@ -119,6 +117,7 @@ public abstract class TransporteurMessage extends Thread {
 
                         //Enlever le message Nack de la liste des reçus.
                         this.msgRecus.defiler();
+
                     } else if (msg.getCompte() > compteCourant) {
                         Nack nack = new Nack(compteCourant);
                         this.envoyerMessage(nack);
@@ -132,6 +131,7 @@ public abstract class TransporteurMessage extends Thread {
                         this.gestionnaireMessage(msg);
                         this.msgRecus.defiler();
                         compteCourant++;
+
                     }
                     compteUnique = compteCourant;
                     NoOp noop = new NoOp(compteUnique);
