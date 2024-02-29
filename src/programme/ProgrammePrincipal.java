@@ -8,6 +8,8 @@ import modele.communication.NoOp;
 import modele.satelliteRelai.SatelliteRelai;
 import utilitaires.Vect2D;
 import utilitaires.File;
+import modele.centreControle.CentreControle;
+import modele.rover.Rover;
 
 public class ProgrammePrincipal {
 
@@ -18,7 +20,22 @@ public class ProgrammePrincipal {
      * @param args, pas utilisé
      */
     public static void main(String[] args) {
+        SatelliteRelai satelliteRelai = new SatelliteRelai();
+        CentreControle centreControle = new CentreControle(satelliteRelai);
+        Rover rover = new Rover(satelliteRelai);
 
+
+        Message nack1 = new Nack(1);
+        Message nack2 = new Nack(2);
+        Message nack3 = new Nack(3);
+        Message nack4 = new Nack(4);
+        Message noop1 = new NoOp(1);
+        Message noop2 = new NoOp(2);
+        Message noop3 = new NoOp(3);
+        Message noop4 = new NoOp(4);
+
+        satelliteRelai.envoyerMessageVersRover(noop1);
+        satelliteRelai.envoyerMessageVersCentrOp(nack3);
 		/*SatelliteRelai satellite = new SatelliteRelai();
 		satellite.start();
 
@@ -46,7 +63,7 @@ public class ProgrammePrincipal {
         //testVect2D();
 
         //TEST File
-        testFile();
+        //testFile();
     }
 
 //=================================================================================================//
