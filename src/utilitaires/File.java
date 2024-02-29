@@ -96,11 +96,11 @@ public class File<T extends Comparable<T>> {
      */
     public T defiler() {
         if (this.estVide()) {
-            System.out.println("ERREUR la file est vide, impossible de retirer un element!");
+//            System.out.println("ERREUR la file est vide, impossible de retirer un element!");
             System.exit(1); //code d'erreur
         }
         if (this.taille == 1) {
-            System.out.println("DEBUG: attention la file est maitenant vide!");
+//            System.out.println("DEBUG: attention la file est maitenant vide!");
         }
         T temp = this.premier.donnee;
         this.premier = this.premier.suivant;
@@ -115,7 +115,7 @@ public class File<T extends Comparable<T>> {
      */
     public T peek() {
         if (this.estVide()) {
-            System.out.println("DEBUG: attention vous essayer de peek une file vide!");
+            //System.out.println("DEBUG: attention vous essayer de peek une file vide!");
             return null;
         } else {
             return this.premier.donnee;
@@ -137,7 +137,7 @@ public class File<T extends Comparable<T>> {
             Noeud courant = this.premier;
             //si l'élément est prioritaire sur tout les éléments de la file
             if (element.compareTo(courant.donnee) > 0) {
-                System.out.println("DEBUG : enfilerPrioritaire. J'enfile " + element + " au debut!");
+                //System.out.println("DEBUG : enfilerPrioritaire. J'enfile " + element + " au debut!");
                 Noeud n = new Noeud(element, this.premier);
                 this.premier = n;
 
@@ -149,7 +149,7 @@ public class File<T extends Comparable<T>> {
 
                 //si on doit insérer a la fin de la file
                 if (courant.suivant == null) {
-                    System.out.println("DEBUG : enfilerPrioritaire. J'enfile " + element + " a la fin!");
+                    //System.out.println("DEBUG : enfilerPrioritaire. J'enfile " + element + " a la fin!");
                     Noeud n = new Noeud(element, null);
                     this.dernier.suivant = n;
                     this.dernier = n;

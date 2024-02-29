@@ -38,8 +38,8 @@ public class SatelliteRelai extends Thread {
     ReentrantLock lock = new ReentrantLock();
     private Random rand = new Random();
 
-    private File fileMessageVersCentrOp = new File();
-    private File fileMessageVersRover = new File();
+    private File<Message> fileMessageVersCentrOp = new File<>();
+    private File<Message> fileMessageVersRover = new File<>();
     private CentreControle centreControle;
     private Rover rover;
 
@@ -60,12 +60,16 @@ public class SatelliteRelai extends Thread {
         lock.lock();
 
         try {
-            //Tire un nombre aléatoire
+//Tire un nombre aléatoire
             double value = rand.nextDouble();
-            //Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
-            // le message est ajouté à la file de messages à destination du centre de contrôle.
-            if (value > PROBABILITE_PERTE_MESSAGE)
+//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
+// le message est ajouté à la file de messages à destination du centre de contrôle.
+            if (value > PROBABILITE_PERTE_MESSAGE) {
                 this.fileMessageVersCentrOp.enfiler(msg);
+            } else {
+                //System.out.println("Satellite envoie vers CentreControle : " + msg + " PERDU!!!");
+            }
+
 
         } finally {
             lock.unlock();
@@ -81,12 +85,15 @@ public class SatelliteRelai extends Thread {
         lock.lock();
 
         try {
-            //Tire un nombre aléatoire
+//Tire un nombre aléatoire
             double value = rand.nextDouble();
-            //Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
-            // le message est ajouté à la file de messages à destination du Rover.
-            if (value > PROBABILITE_PERTE_MESSAGE)
+//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
+// le message est ajouté à la file de messages à destination du Rover.
+            if (value > PROBABILITE_PERTE_MESSAGE) {
                 this.fileMessageVersRover.enfiler(msg);
+            } else {
+                System.out.println("Satellite envoie vers Rover : " + msg + " PERDU!!!");
+            }
 
         } finally {
             lock.unlock();
@@ -98,8 +105,17 @@ public class SatelliteRelai extends Thread {
 
         while (true) {
             // a chaque cycle
-            this.fileMessageVersRover.defiler();
-            this.fileMessageVersCentrOp.defiler();
+            while (!fileMessageVersCentrOp.estVide()) {
+                Message msg = this.fileMessageVersCentrOp.defiler();
+                this.centreControle.receptionMessageDeSatellite(msg);
+                //System.out.println("Satellite envoie vers CentreControle : " + msg);
+            }
+
+            while (!fileMessageVersRover.estVide()) {
+                Message msg = this.fileMessageVersRover.defiler();
+                this.rover.receptionMessageDeSatellite(msg);
+                System.out.println("Satellite envoie vers Rover : " + msg);
+            }
 
             // attend le prochain cycle
             try {

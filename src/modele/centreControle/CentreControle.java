@@ -14,17 +14,17 @@ public class CentreControle extends TransporteurMessage {
     protected void envoyerMessage(Message msg) {
         satelliteRelai.envoyerMessageVersRover(msg);
         msgEnvoyes.enfilerPrioritaire(msg);
+        System.out.println("CentreControle envoie : " + msg);
     }
 
     @Override
     protected void gestionnaireMessage(Message msg) {
-        System.out.println("Message reçu par CentreControle : " + msg);
+        //System.out.println("CentreControle reçoit : " + msg);
     }
 
 
     public CentreControle(SatelliteRelai satelliteRelai) {
         this.satelliteRelai = satelliteRelai;
-
     }
 
 }

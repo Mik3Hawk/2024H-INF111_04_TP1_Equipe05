@@ -21,44 +21,17 @@ public class ProgrammePrincipal {
      */
     public static void main(String[] args) {
         SatelliteRelai satelliteRelai = new SatelliteRelai();
+
         CentreControle centreControle = new CentreControle(satelliteRelai);
         Rover rover = new Rover(satelliteRelai);
 
+        satelliteRelai.lierCentrOp(centreControle);
+        satelliteRelai.lierRover(rover);
 
-        Message nack1 = new Nack(1);
-        Message nack2 = new Nack(2);
-        Message nack3 = new Nack(3);
-        Message nack4 = new Nack(4);
-        Message noop1 = new NoOp(1);
-        Message noop2 = new NoOp(2);
-        Message noop3 = new NoOp(3);
-        Message noop4 = new NoOp(4);
-
-        satelliteRelai.envoyerMessageVersRover(noop1);
-        satelliteRelai.envoyerMessageVersCentrOp(nack3);
-		/*SatelliteRelai satellite = new SatelliteRelai();
-		satellite.start();
-
-		//TEST SatelliteRelais
-		satellite.envoyerMessageVersRover("allo test 1");
-		satellite.envoyerMessageVersRover("allo test 2");
-		satellite.envoyerMessageVersRover("allo test 3");
-
-		//boucle qui effectue 1 itération a chaque 5 secondes 10 fois
-		for (int i = 0; i < 10; i++) {
-
-			System.out.println("Itération " + (i + 1));
-
-			System.out.println(satellite.getFileMessageVersRover());
-			// Attente de 5 secondes trouvé sur internet
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}*/
-
-
+        satelliteRelai.start();
+        rover.start();
+        centreControle.start();
+        
         //TEST Vect2D
         //testVect2D();
 
@@ -66,7 +39,7 @@ public class ProgrammePrincipal {
         //testFile();
 
         //TEST Message
-        testMessage();
+        //testMessage();
     }
 
 //=================================================================================================//

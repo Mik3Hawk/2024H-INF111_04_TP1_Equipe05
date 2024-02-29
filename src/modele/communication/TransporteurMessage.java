@@ -84,7 +84,6 @@ public abstract class TransporteurMessage extends Thread {
         int msgCompte, courantCompte, compteUnique;
         boolean unNackEnvoye = false;
 
-        Message msg = this.msgRecus.peek();
 
         while (true) {
 
@@ -92,25 +91,26 @@ public abstract class TransporteurMessage extends Thread {
 
             try {
 
-                //3.4.4
+                //6.4.4
+                unNackEnvoye = false;
                 while (!this.msgRecus.estVide() && !unNackEnvoye) {
+                    Message msg = this.msgRecus.peek();
 
                     if (msg instanceof Nack) {
+                        System.out.println(this.getClass().getName() + " reçoit " + msg + " NACK!!");
                         //obtient le compte du message manquant
                         msgCompte = msg.getCompte();
+
                         //enlevant tous les messages estInstance de Nack.
 
                         while (this.msgEnvoyes.peek() instanceof Nack) {
                             this.msgEnvoyes.defiler();
                         }
 
-                        courantCompte = this.msgEnvoyes.peek().getCompte();
-
                         //cherche ce message dans la file des messages envoyés
-                        while (courantCompte != (msgCompte)) {
+                        while (this.msgEnvoyes.peek().getCompte() != (msgCompte)) {
                             //enlevant tous les messages au compte inférieur au passage
                             this.msgEnvoyes.defiler();
-                            courantCompte = this.msgEnvoyes.peek().getCompte();
                         }
 
                         //peek le message à envoyer et envoyer
@@ -134,11 +134,11 @@ public abstract class TransporteurMessage extends Thread {
                         compteCourant++;
 
                     }
-                    compteUnique = compteCourant;
-                    NoOp noop = new NoOp(compteUnique);
-                    this.envoyerMessage(noop);
                 }
 
+                //Obtient un nouveau compte unique
+                NoOp noop = new NoOp(this.compteurMsg.getCompteActuel());
+                this.envoyerMessage(noop);
 
             } finally {
                 lock.unlock();
