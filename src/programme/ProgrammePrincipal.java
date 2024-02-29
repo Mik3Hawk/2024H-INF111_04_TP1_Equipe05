@@ -64,6 +64,9 @@ public class ProgrammePrincipal {
 
         //TEST File
         //testFile();
+
+        //TEST Message
+        testMessage();
     }
 
 //=================================================================================================//
@@ -181,11 +184,11 @@ public class ProgrammePrincipal {
 
         //============================================//
         //test to string
-        System.out.println(file1 + " <- si: a,b,c,d, OK");
+        System.out.println(file1 + "\n^^^^ si: a,b,c,d, OK");
         System.out.println(file1.getTaille() + " <- si: 4, OK");
         System.out.println(file1.defiler() + " <- si: a, OK");
         System.out.println(file1.getTaille() + " <- si: 3, OK");
-        System.out.println(file1 + " <- si: b,c,d, OK");
+        System.out.println(file1 + "\n^^^^ si: b,c,d, OK");
 
         while (!file1.estVide()) {
             file1.defiler();
@@ -197,7 +200,7 @@ public class ProgrammePrincipal {
         file1.enfilerPrioritaire("b");
         System.out.println(file1.getTaille() + " <- si: 1, OK");
         System.out.println(file1);
-        file1.enfilerPrioritaire("b");
+        file1.enfilerPrioritaire("a");
         System.out.println(file1.getTaille() + " <- si: 2, OK");
         file1.enfilerPrioritaire("c");
         System.out.println(file1.getTaille() + " <- si: 3, OK");
@@ -205,26 +208,30 @@ public class ProgrammePrincipal {
         file1.enfilerPrioritaire("d");
         file1.enfilerPrioritaire("e");
         file1.enfilerPrioritaire("f");
-        System.out.println(file1 + " <- si: f,e,d,c,b,a OK");
+        System.out.println(file1 + "\n^^^^ si: f, e, d, c, b, a OK");
         System.out.println(file1.defiler() + " <- si: f OK");
         file1.enfilerPrioritaire("e");
         file1.enfilerPrioritaire("f");
-        System.out.println(file1 + " <- si: f,e,e,d,c,b,a OK");
+        System.out.println(file1 + "\n^^^^ si: f, e, e, d, c, b, a OK");
         file1.enfilerPrioritaire("d");
         file1.enfilerPrioritaire("b");
-        System.out.println(file1 + " <- si: f,e,e,d,d,c,b,b,a OK");
+        System.out.println(file1 + "\n^^^^ si: f, e, e, d, d, c, b, b, a OK");
         file1.enfilerPrioritaire("a");
 
 
         //============================================//
         //test peek
-        System.out.println(file1.peek() + " <- si: f OK");
+        System.out.println(file1.peek() + " <-- si: f OK");
         while (!file1.estVide()) {
             file1.defiler();
         }
-        System.out.println(file1.peek() + " <- si: null OK");
+        System.out.println(file1.peek() + " <-- si: null OK");
 
         //============================================//
+
+    }
+
+    public static void testMessage() {
         //test file avec message
         File<Message> fileMsg = new File<>();
         Message nack1 = new Nack(1);
@@ -236,17 +243,15 @@ public class ProgrammePrincipal {
         Message noop3 = new NoOp(3);
         Message noop4 = new NoOp(4);
 
-        fileMsg.enfilerPrioritaire(nack1);
+        fileMsg.enfilerPrioritaire(nack2);
         fileMsg.enfilerPrioritaire(noop2);
-        System.out.println(fileMsg + " <- si: nack1,noop2 OK");
+        System.out.println(fileMsg + "\n^^^^ si: nack1, noop2 OK");
         fileMsg.enfilerPrioritaire(nack3);
         fileMsg.enfilerPrioritaire(noop4);
         fileMsg.enfilerPrioritaire(nack4);
         fileMsg.enfilerPrioritaire(noop1);
-        fileMsg.enfilerPrioritaire(nack2);
+        fileMsg.enfilerPrioritaire(nack1);
         fileMsg.enfilerPrioritaire(noop3);
-        System.out.println(fileMsg + " <- si: nack1, nack2, nack3, nack4, noop1, noop2, noop3, noop4 OK");
-
-
+        System.out.println(fileMsg + "\n^^^^ si: nack1, nack2, nack3, nack4, noop1, noop2, noop3, noop4 OK");
     }
 }
