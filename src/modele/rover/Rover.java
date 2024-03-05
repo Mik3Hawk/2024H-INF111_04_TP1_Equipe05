@@ -12,8 +12,8 @@ public class Rover extends TransporteurMessage {
     // Définitions des méthodes abstraites
     @Override
     protected void envoyerMessage(Message msg) {
-        satelliteRelai.envoyerMessageVersCentrOp(msg);
-        msgEnvoyes.enfilerPrioritaire(msg);
+        this.satelliteRelai.envoyerMessageVersCentrOp(msg);
+        this.msgEnvoyes.enfilerPrioritaire(msg);
         //System.out.println("Rover envoie : " + msg);
     }
 

@@ -97,7 +97,7 @@ public abstract class TransporteurMessage extends Thread {
                     Message msg = this.msgRecus.peek();
 
                     if (msg instanceof Nack) {
-                        System.out.println(this.getClass().getName() + " reçoit " + msg + " NACK!!");
+                        //System.out.println(this.getClass().getName() + " reçoit " + msg + " NACK!!");
                         //obtient le compte du message manquant
                         msgCompte = msg.getCompte();
 
@@ -122,6 +122,7 @@ public abstract class TransporteurMessage extends Thread {
                     } else if (msg.getCompte() > compteCourant) {
                         Nack nack = new Nack(compteCourant);
                         this.envoyerMessage(nack);
+                        //System.out.println(this.getClass().getName() + " renvoit " + msg + "  RÉPONSE A UN NACK!!");
                         unNackEnvoye = true;
 
                     } else if (msg.getCompte() < compteCourant) {

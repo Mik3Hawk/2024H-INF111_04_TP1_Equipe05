@@ -34,7 +34,7 @@ import modele.communication.Message;
 public class SatelliteRelai extends Thread {
 
     static final int TEMPS_CYCLE_MS = 500;
-    static final double PROBABILITE_PERTE_MESSAGE = 0.15;
+    static final double PROBABILITE_PERTE_MESSAGE = 0.70; //0.15
     ReentrantLock lock = new ReentrantLock();
     private Random rand = new Random();
 
@@ -60,10 +60,10 @@ public class SatelliteRelai extends Thread {
         lock.lock();
 
         try {
-//Tire un nombre aléatoire
+            //Tire un nombre aléatoire
             double value = rand.nextDouble();
-//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
-// le message est ajouté à la file de messages à destination du centre de contrôle.
+            //Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
+            // le message est ajouté à la file de messages à destination du centre de contrôle.
             if (value > PROBABILITE_PERTE_MESSAGE) {
                 this.fileMessageVersCentrOp.enfiler(msg);
             } else {
@@ -85,14 +85,14 @@ public class SatelliteRelai extends Thread {
         lock.lock();
 
         try {
-//Tire un nombre aléatoire
+            //Tire un nombre aléatoire
             double value = rand.nextDouble();
-//Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
-// le message est ajouté à la file de messages à destination du Rover.
+            //Si le nombre aléatoire est plus grand que PROBABILITE_PERTE_MESSAGE,
+            // le message est ajouté à la file de messages à destination du Rover.
             if (value > PROBABILITE_PERTE_MESSAGE) {
                 this.fileMessageVersRover.enfiler(msg);
             } else {
-                System.out.println("Satellite envoie vers Rover : " + msg + " PERDU!!!");
+                //System.out.println("Satellite envoie vers Rover : " + msg + " PERDU!!!");
             }
 
         } finally {
@@ -114,7 +114,7 @@ public class SatelliteRelai extends Thread {
             while (!fileMessageVersRover.estVide()) {
                 Message msg = this.fileMessageVersRover.defiler();
                 this.rover.receptionMessageDeSatellite(msg);
-                System.out.println("Satellite envoie vers Rover : " + msg);
+                //System.out.println("Satellite envoie vers Rover : " + msg);
             }
 
             // attend le prochain cycle

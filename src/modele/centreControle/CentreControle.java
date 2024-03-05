@@ -12,9 +12,9 @@ public class CentreControle extends TransporteurMessage {
     // Définitions des méthodes abstraites
     @Override
     protected void envoyerMessage(Message msg) {
-        satelliteRelai.envoyerMessageVersRover(msg);
-        msgEnvoyes.enfilerPrioritaire(msg);
-        System.out.println("CentreControle envoie : " + msg);
+        this.satelliteRelai.envoyerMessageVersRover(msg);
+        this.msgEnvoyes.enfilerPrioritaire(msg);
+        //System.out.println("CentreControle envoie : " + msg);
     }
 
     @Override
