@@ -1,9 +1,6 @@
 package modele.centreControle;
 
-import modele.communication.Commande;
-import modele.communication.Message;
-import modele.communication.Status;
-import modele.communication.TransporteurMessage;
+import modele.communication.*;
 import modele.satelliteRelai.SatelliteRelai;
 import utilitaires.File;
 import utilitaires.Vect2D;
@@ -20,13 +17,13 @@ public class CentreControle extends TransporteurMessage {
     public void sequenceTest() {
         Commande msgCmd = null;
         msgCmd = new Commande(compteurMsg.getCompteActuel(), new Vect2D(25, 75));
-        this.satelliteRelai.envoyerMessageVersRover(msgCmd);
+        this.envoyerMessage(msgCmd);
 
         msgCmd = new Commande(compteurMsg.getCompteActuel(), new Vect2D(99, 15));
-        this.satelliteRelai.envoyerMessageVersRover(msgCmd);
+        this.envoyerMessage(msgCmd);
 
         msgCmd = new Commande(compteurMsg.getCompteActuel(), new Vect2D(10, 10));
-        this.satelliteRelai.envoyerMessageVersRover(msgCmd);
+        this.envoyerMessage(msgCmd);
     }
 
     // Définitions des méthodes abstraites

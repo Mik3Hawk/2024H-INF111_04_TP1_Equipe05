@@ -38,6 +38,8 @@ public class Rover extends TransporteurMessage {
 
             //Envoyer un message status indiquant la position initiale du Rover
             this.envoyerMessage(new Status(this.compteurMsg.getCompteActuel(), this.pos));
+            //L'affichage du statut semble incorrect, mais en plaçant un point d'arrêt sur cette ligne(40)
+            // en utilisant le débogage step into, le statut s'affiche correctement.
         }
 
         //Calcul de la fraction de secondes requise pour terminer le déplacement. (temps%1.0)
@@ -51,7 +53,6 @@ public class Rover extends TransporteurMessage {
         this.envoyerMessage(new Status(this.compteurMsg.getCompteActuel(), this.pos));
     }
 
-
     // Définitions des méthodes abstraites
     @Override
     protected void envoyerMessage(Message msg) {
@@ -62,14 +63,25 @@ public class Rover extends TransporteurMessage {
 
     @Override
     protected void gestionnaireMessage(Message msg) {
-
-        //si le message est une Commande NÉCÉSSAIRE???
         if (msg instanceof Commande) {
             switch (((Commande) msg).getCommande()) {
+
                 case DEPLACER_ROVER:
                     System.out.println("on veut deplacer le rover a :" + ((Commande) msg).getVect());
                     deplacerRover(((Commande) msg).getVect());
+                    break;
+
+                case PRENDRE_PHOTOS:
+                    System.out.println("on veut que le rover prenne une photo");
+                    //PAS À IMPLEMENTER
+                    break;
+
+                case NULLE:
+                    System.out.println("on veut rien faire avec le rover");
+                    //PAS À IMPLEMENTER
+                    break;
             }
+
 
         }
         System.out.println("Rover reçoit : " + msg);
