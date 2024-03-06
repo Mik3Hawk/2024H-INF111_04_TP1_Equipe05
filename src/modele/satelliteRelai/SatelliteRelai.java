@@ -34,7 +34,7 @@ import modele.communication.Message;
 public class SatelliteRelai extends Thread {
 
     static final int TEMPS_CYCLE_MS = 500;
-    static final double PROBABILITE_PERTE_MESSAGE = 0.70; //0.15
+    static final double PROBABILITE_PERTE_MESSAGE = 0.15; //0.15
     ReentrantLock lock = new ReentrantLock();
     private Random rand = new Random();
 

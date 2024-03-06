@@ -76,7 +76,6 @@ public abstract class Message implements Comparable<Message> {
     }
 
     @Override
-
     public String toString() {
         String s = Integer.toString(this.compte);
         if (this instanceof Nack) {
@@ -84,6 +83,12 @@ public abstract class Message implements Comparable<Message> {
         }
         if (this instanceof NoOp) {
             return "noop" + s;
+        }
+        if (this instanceof Commande) {
+            return "Commande" + s + "," + ((Commande) this).getCommande() + ((Commande) this).getVect();
+        }
+        if (this instanceof Status) {
+            return "Status" + s + " :" + ((Status) this).getVect();
         }
 
         return "msg" + s;

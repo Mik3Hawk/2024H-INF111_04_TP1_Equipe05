@@ -96,7 +96,7 @@ public class File<T extends Comparable<T>> {
      */
     public T defiler() {
         if (this.estVide()) {
-//            System.out.println("ERREUR la file est vide, impossible de retirer un element!");
+            System.out.println("ERREUR la file est vide, impossible de retirer un element!");
             System.exit(1); //code d'erreur
         }
         if (this.taille == 1) {

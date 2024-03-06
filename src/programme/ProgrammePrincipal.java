@@ -23,7 +23,9 @@ public class ProgrammePrincipal {
         SatelliteRelai satelliteRelai = new SatelliteRelai();
 
         CentreControle centreControle = new CentreControle(satelliteRelai);
-        Rover rover = new Rover(satelliteRelai);
+
+        Vect2D posRoverIni = new Vect2D(50, 50);
+        Rover rover = new Rover(satelliteRelai, posRoverIni);
 
         satelliteRelai.lierCentrOp(centreControle);
         satelliteRelai.lierRover(rover);
@@ -31,7 +33,9 @@ public class ProgrammePrincipal {
         satelliteRelai.start();
         rover.start();
         centreControle.start();
-        
+
+        centreControle.sequenceTest();
+
         //TEST Vect2D
         //testVect2D();
 

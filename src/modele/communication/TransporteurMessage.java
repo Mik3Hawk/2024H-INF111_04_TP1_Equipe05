@@ -81,7 +81,7 @@ public abstract class TransporteurMessage extends Thread {
     public void run() {
 
         int compteCourant = 0;
-        int msgCompte, courantCompte, compteUnique;
+        int msgCompte;
         boolean unNackEnvoye = false;
 
 
