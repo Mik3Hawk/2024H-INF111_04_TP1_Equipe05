@@ -1,7 +1,5 @@
 package programme;
 
-import java.io.IOException;
-
 import modele.communication.Message;
 import modele.communication.Nack;
 import modele.communication.NoOp;
