@@ -20,8 +20,8 @@ public class ProgrammePrincipal {
      * @param args, pas utilisé
      */
     public static void main(String[] args) {
-        SatelliteRelai satelliteRelai = new SatelliteRelai();
 
+        SatelliteRelai satelliteRelai = new SatelliteRelai();
         CentreControle centreControle = new CentreControle(satelliteRelai);
 
         Vect2D posRoverIni = new Vect2D(50, 50);
@@ -51,7 +51,6 @@ public class ProgrammePrincipal {
     /**
      * Fonction de test pour la classe Vect2D
      */
-
     public static void testVect2D() {
         Vect2D v = new Vect2D();
         System.out.println(v);
@@ -121,7 +120,6 @@ public class ProgrammePrincipal {
     /**
      * Fonction de Test pour la classe File
      */
-
     public static void testFile() {
 
         //============================================//
@@ -208,6 +206,7 @@ public class ProgrammePrincipal {
 
     }
 
+    //=================================================================================================//
     public static void testMessage() {
         //test file avec message
         File<Message> fileMsg = new File<>();

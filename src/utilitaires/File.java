@@ -1,8 +1,7 @@
 package utilitaires;
 
-
 /**
- * Classe qui gère les files d'objets
+ * Classe qui gère les files d'objets.
  * <p>
  * services offerts:
  * - getTaille
@@ -10,28 +9,14 @@ package utilitaires;
  * - enfiler
  * - defiler
  * - peek
- * - toString
- *
- * @author Noah Tremblay, ETS
- * @version Fev, 2024
- */
-
-import modele.communication.Message;
-
-/**
- * Classe file
- * <p>
- * Services offerts:
- * - getTaille
- * - estVide
- * - enfiler
- * - defiler
- * - peek
  * - enfilerPrioritaire
  * - toString
+ *
+ * @author Noah Tremblay, Cédric Ruel, Houssam Moussafir ETS
+ * @version Fev, 2024
  */
-
 public class File<T extends Comparable<T>> {
+
     private Noeud premier, dernier;
     private int taille;
 

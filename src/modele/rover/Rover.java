@@ -2,14 +2,45 @@ package modele.rover;
 
 import modele.communication.*;
 import modele.satelliteRelai.SatelliteRelai;
-import utilitaires.File;
 import utilitaires.Vect2D;
 
+/**
+ * Classe qui représente le Rover extend la classe transporteurMessage
+ * <p>
+ * Elle permet de gérer la réception et l'envoi de message depuis le Rover et contient une référence a son Satellite
+ * Le rover peut aussi bouger sur commande d'un message Commande
+ * <p>
+ * services offerts:
+ * - sequeceTest
+ * - envoyerMessage
+ * - gestionaireMessage
+ *
+ * @author Noah Tremblay, Cédric Ruel, Houssam Moussafir ETS
+ * @version Fev, 2024
+ */
+
 public class Rover extends TransporteurMessage {
+
     private SatelliteRelai satelliteRelai;
     private Vect2D pos;
     private static final double VITESSE_MparS = 0.5; //0.5
 
+    /**
+     * Constructeur du défault qui relie le Rover
+     *
+     * @param satelliteRelai Le sateiliteRelai qu'on veut lier au Rover
+     * @param posInitiale    Le centreOp qu'on veut lier au Rover
+     */
+    public Rover(SatelliteRelai satelliteRelai, Vect2D posInitiale) {
+        this.satelliteRelai = satelliteRelai;
+        this.pos = posInitiale;
+    }
+
+    /**
+     * Méthode qui permet de déplacer un rover a un destination
+     *
+     * @param destination La ou on veut déplacer le rover
+     */
     private void deplacerRover(Vect2D destination) {
         int i;
         Vect2D vectDeplacement;
@@ -54,6 +85,7 @@ public class Rover extends TransporteurMessage {
     }
 
     // Définitions des méthodes abstraites
+
     @Override
     protected void envoyerMessage(Message msg) {
         this.satelliteRelai.envoyerMessageVersCentrOp(msg);
@@ -81,14 +113,7 @@ public class Rover extends TransporteurMessage {
                     //PAS À IMPLEMENTER
                     break;
             }
-
-
         }
         System.out.println("Rover reçoit : " + msg);
-    }
-
-    public Rover(SatelliteRelai satelliteRelai, Vect2D posInitiale) {
-        this.satelliteRelai = satelliteRelai;
-        this.pos = posInitiale;
     }
 }

@@ -3,7 +3,14 @@ package modele.communication;
 import utilitaires.Vect2D;
 
 /**
- * La classe Commande étend la classe Message et représente une commande pour le rover avec ou sans vecteur.
+ * Classe qui représente les Commandes extend la classe Message
+ * <p>
+ * services offerts:
+ * - getCommande
+ * - getVect
+ *
+ * @author Noah Tremblay, Cédric Ruel, Houssam Moussafir ETS
+ * @version Fev, 2024
  */
 public class Commande extends Message {
     private eCommande commande;
